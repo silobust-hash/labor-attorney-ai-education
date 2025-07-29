@@ -17,8 +17,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // axios 기본 설정
-  axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  // axios 기본 설정 - 프로덕션에서는 상대 경로 사용
+  const isProduction = process.env.NODE_ENV === 'production';
+  axios.defaults.baseURL = isProduction ? '' : 'http://localhost:5000';
 
   // axios 인터셉터 추가 - 토큰 만료 시 자동 로그아웃
   useEffect(() => {
