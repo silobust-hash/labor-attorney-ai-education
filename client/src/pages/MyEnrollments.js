@@ -7,12 +7,6 @@ const MyEnrollments = () => {
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user) {
-      loadEnrollments();
-    }
-  }, [user, loadEnrollments]);
-
   const loadEnrollments = useCallback(async () => {
     try {
       const response = await axios.get('/api/enrollments/my', {
@@ -27,6 +21,12 @@ const MyEnrollments = () => {
       setLoading(false);
     }
   }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      loadEnrollments();
+    }
+  }, [user, loadEnrollments]);
 
   const getStatusBadge = (status) => {
     const statusConfig = {
