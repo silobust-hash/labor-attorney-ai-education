@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
 
@@ -11,9 +11,9 @@ const MyEnrollments = () => {
     if (user) {
       loadEnrollments();
     }
-  }, [user]);
+  }, [user, loadEnrollments]);
 
-  const loadEnrollments = async () => {
+  const loadEnrollments = useCallback(async () => {
     try {
       const response = await axios.get('/api/enrollments/my', {
         headers: {
@@ -26,7 +26,7 @@ const MyEnrollments = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   const getStatusBadge = (status) => {
     const statusConfig = {

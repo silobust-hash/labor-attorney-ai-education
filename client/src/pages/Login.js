@@ -30,6 +30,7 @@ const Login = () => {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   const validateForm = () => {
     const newErrors = {};
 
@@ -150,9 +151,9 @@ const Login = () => {
               </div>
 
               <div className="text-sm">
-                <a href="#" className="font-medium text-primary-600 hover:text-primary-500">
+                <button type="button" className="font-medium text-primary-600 hover:text-primary-500">
                   비밀번호를 잊으셨나요?
-                </a>
+                </button>
               </div>
             </div>
 
